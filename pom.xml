@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>dummy-service</artifactId>
+    <artifactId>dummy-service-java</artifactId>
     <version>0.1.0</version>
 
     <parent>
