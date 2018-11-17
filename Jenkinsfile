@@ -1,16 +1,36 @@
 pipeline {
+
     agent {
         docker {
             image 'maven:3-alpine'
         }
     }
+
     stages {
-        stage('Install dependencies') {
+        stage('Compile sources') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean compile'
             }
         }
+	stage('Run unit tests'){
+	    steps {
+	        sh 'mvn test'
+	    }
+	}
+	stage('Package artifact'){
+	    steps {
+		sh 'mvn package'
+	    }
+	}
     }
+
+    post {
+        always {
+            archiveArtifacts 'build/libs/**/*.jar'
+
+        } 
+    }
+
 }
 
 
