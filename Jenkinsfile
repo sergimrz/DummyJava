@@ -9,25 +9,24 @@ pipeline {
     stages {
         stage('Compile sources') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn -q clean compile'
             }
         }
 	stage('Run unit tests'){
 	    steps {
-	        sh 'mvn test'
+	        sh 'mvn -q test'
 	    }
 	}
 	stage('Package artifact'){
 	    steps {
-		sh 'mvn package'
+		sh 'mvn -q package'
 	    }
 	}
     }
 
     post {
         always {
-            archiveArtifacts 'build/libs/**/*.jar'
-
+            archiveArtifacts '**/*.jar'
         } 
     }
 
