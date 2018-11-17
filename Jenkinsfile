@@ -1,3 +1,16 @@
-node{
-    stage("Clone repository"){ git credentialsId: 'github', url: 'https://github.com/sergimrz/dummy-service-java.git' }
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+        }
+    }
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
 }
+
+
