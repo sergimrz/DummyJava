@@ -5,12 +5,29 @@ pipeline {
         }
     }
     stages {
-        stage('Install dependencies') {
+        stage('Compile sources') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn -B clean compile'
             }
         }
+	stage('Run unit tests'){
+	    steps {
+	        sh 'mvn -B test'
+	    }
+	}
+	stage('Package artifact'){
+	    steps {
+		sh 'mvn -B package'
+	    }
+	}
     }
+
+    post {
+        always {
+            archiveArtifacts 'target/*.jar'
+        } 
+    }
+
 }
 
 
