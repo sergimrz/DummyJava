@@ -1,9 +1,11 @@
 pipeline {
+
     agent {
         docker {
             image 'maven:3-alpine'
         }
     }
+
     stages {
         stage('Compile sources') {
             steps {
