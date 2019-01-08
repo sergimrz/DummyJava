@@ -1,2 +1,2 @@
 # TestRepo
-Repository for test events
+Repository for test event triggers
